@@ -10,14 +10,14 @@
 <body>
 <!--
   MODE D’EMPLOI RAPIDE
-  • Vidéos YouTube : sur chaque élément class="vslot", remplace data-yt="" par l’identifiant
-    de la vidéo (la fin du lien : youtube.com/watch?v=IDENTIFIANT). Pour un Short : youtube.com/shorts/IDENTIFIANT.
-  • Images : mets-les dans le dossier img/ (ex. img/cortis-cover.jpg).
-  • Couleurs et fonds : tout en haut de style.css, bloc « PERSONNALISATION ».
-  • Musiques : tout en haut de script.js, tableau MUSIQUES.
+  • Vidéos YouTube : tout en haut de script.js, tableau VIDEOS (colle l’identifiant de chaque vidéo).
+  • Images : dossier img/ (ex. img/cortis-cover.jpg).
+  • Couleurs, fonds et motifs : haut de style.css, bloc « PERSONNALISATION ».
+  • Musiques et salles silencieuses : haut de script.js.
+  • Textes « Univers » de chaque salle : balises <aside class="insp"> ci-dessous.
 -->
 <div id="hud">
- <button id="mute" aria-pressed="false">Son : activé</button>
+ <div class="hl"><button id="home" hidden>⌂ Accueil</button><button id="mute" aria-pressed="false">Son : activé</button></div>
  <div id="plaque" aria-live="polite"></div>
 </div>
 
@@ -39,27 +39,31 @@
 <!-- ============ SCÈNE 2 : MOTION MUSICAL ============ -->
 <section class="scene" id="s2" aria-label="Salle I">
  <div class="wrap album">
-  <div class="cover">
-   <img src="img/cortis-cover.jpg" alt="Pochette de l’album Cortis" onerror="this.remove()">
-   <b aria-hidden="true">CORTIS</b>
+  <div class="disc" id="disc">
+   <div class="cd" aria-hidden="true"></div>
+   <div class="cover">
+    <img src="img/cortis-cover.jpg" alt="Pochette de l’album Cortis" onerror="this.remove()">
+    <b aria-hidden="true">CORTIS</b>
+   </div>
   </div>
   <div>
-   <h2>Quand les lettres suivent le rythme</h2>
-   <p class="sm" style="margin-top:10px">Deux pistes, deux motion designs composés sur du K-pop. Posez l’aiguille sur une piste pour lancer la vidéo.</p>
+   <h2>Le disque tourne, les lettres dansent</h2>
+   <p class="sm" style="margin-top:10px">Un album, deux pistes : deux motion designs composés sur du K-pop. Choisissez une piste et le disque se met à tourner.</p>
    <div class="tracks" id="tracks">
     <button data-p="p1">▶ Piste 1 — Titre du projet 1</button>
     <button data-p="p2">▶ Piste 2 — Titre du projet 2</button>
    </div>
    <div class="proj" id="p1">
-    <div class="vslot h169" data-yt=""></div>
-    <div class="chips"><span>After Effects</span><span>Illustrator</span><span>Premiere Pro</span></div>
-    <div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div>
-   </div>
-   <div class="proj" id="p2">
-    <div class="vslot h169" data-yt=""></div>
+    <div class="vslot h169" data-v="p1"></div>
     <div class="chips"><span>After Effects</span><span>Illustrator</span></div>
     <div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div>
    </div>
+   <div class="proj" id="p2">
+    <div class="vslot h169" data-v="p2"></div>
+    <div class="chips"><span>After Effects</span><span>Illustrator</span><span>Premiere Pro</span></div>
+    <div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div>
+   </div>
+   <aside class="insp"><span class="g">♪</span><div><b>Mon univers ici</b>K-pop et album GREENGREEN : l’énergie, la typographie qui bouge au rythme du son, des verts vifs et un côté « pochette qui prend vie ».</div></aside>
   </div>
  </div>
 </section>
@@ -67,17 +71,17 @@
 <!-- ============ SCÈNE 3 : AFFICHE → MOBILE ============ -->
 <section class="scene" id="s3" aria-label="Salle II">
  <div class="wrap">
-  <h2>Du papier à l’écran</h2>
-  <p>Un même univers visuel, pensé pour le print puis donné au mouvement. Faites glisser le curseur pour suivre trois étapes : le storyboard, la version statique, puis l’animation.</p>
+  <h2>Une affiche qui s’éveille</h2>
+  <p>Je pars d’une idée sur le papier, je la fixe en affiche, puis je lui donne du souffle. Déplacez le curseur pour suivre le chemin : storyboard, statique, animation.</p>
   <div class="trio" id="trio" data-step="0">
-   <!-- 2 projets horizontaux (même hauteur) + 1 vertical -->
-   <figure class="card h"><div class="s s0">Storyboard<br>projet 1</div><div class="s s1">Statique<br>projet 1</div><div class="s s2"><div class="vslot" data-yt=""></div></div></figure>
-   <figure class="card h"><div class="s s0">Storyboard<br>projet 2</div><div class="s s1">Statique<br>projet 2</div><div class="s s2"><div class="vslot" data-yt=""></div></div></figure>
-   <figure class="card v"><div class="s s0">Storyboard<br>projet 3</div><div class="s s1">Statique<br>projet 3</div><div class="s s2"><div class="vslot" data-yt=""></div></div></figure>
+   <figure class="card h"><div class="s s0">Storyboard<br>projet 1</div><div class="s s1">Statique<br>projet 1</div><div class="s s2"><div class="vslot" data-v="s3a"></div></div></figure>
+   <figure class="card h"><div class="s s0">Storyboard<br>projet 2</div><div class="s s1">Statique<br>projet 2</div><div class="s s2"><div class="vslot" data-v="s3b"></div></div></figure>
+   <figure class="card v"><div class="s s0">Storyboard<br>projet 3</div><div class="s s1">Statique<br>projet 3</div><div class="s s2"><div class="vslot" data-v="s3c"></div></div></figure>
   </div>
   <div class="steps"><span>1 · Storyboard</span><span>2 · Statique</span><span>3 · Animation</span></div>
   <input type="range" id="tl" min="0" max="2" step="1" value="0" aria-label="Étape du projet">
   <div class="chips"><span>Illustrator</span><span>Photoshop</span><span>After Effects</span></div>
+  <aside class="insp"><span class="g">✦</span><div><b>Mon univers ici</b>L’esprit de Genshin : une salle calme, des lumières douces, des mouvements lents et fluides, comme un décor qui respire.</div></aside>
  </div>
 </section>
 
@@ -85,18 +89,28 @@
 <section class="scene" id="s4" aria-label="Salle III">
  <div class="wrap">
   <h2>Photomontage animé</h2>
-  <p>L’image semble figée. Passez la souris (ou touchez-la) : les éléments quittent le cadre et envahissent la page.</p>
-  <div class="photo" id="photo" tabindex="0" aria-label="Photomontage animé">
-   <div class="pic"><i class="moon"></i><i class="ground"></i></div>
-   <i class="fly leaf" style="left:30%;top:30%;--x:-300px;--y:-140px;--r:-80deg;--d:1.4"></i>
-   <i class="fly leaf" style="left:62%;top:20%;--x:320px;--y:-120px;--r:70deg;--d:1"></i>
-   <i class="fly leaf" style="left:50%;top:60%;--x:80px;--y:210px;--r:140deg;--d:1.8"></i>
-   <i class="fly leaf" style="left:20%;top:62%;--x:-340px;--y:150px;--r:-120deg;--d:.8"></i>
-   <i class="fly shard" style="left:75%;top:50%;--x:340px;--y:60px;--r:30deg;--d:1.2"></i>
-   <i class="fly shard" style="left:40%;top:15%;--x:-60px;--y:-200px;--r:-45deg;--d:1.6"></i>
+  <p>Une photo, un instant figé. Passez la souris dessus : le décor se réveille et les éléments s’échappent de la page, comme si l’image ne pouvait plus les contenir.</p>
+  <div class="photo" id="photo" tabindex="0" aria-label="Photomontage animé : survolez pour lancer">
+   <div class="pic"><i class="moon"></i><i class="ground"></i><span class="cue">Passez la souris</span></div>
+   <i class="fly leaf" style="left:28%;top:30%;--x:-62vw;--y:-22vh;--r:-200deg;--d:1.4"></i>
+   <i class="fly leaf" style="left:64%;top:18%;--x:60vw;--y:-26vh;--r:180deg;--d:1"></i>
+   <i class="fly leaf big" style="left:50%;top:62%;--x:10vw;--y:34vh;--r:260deg;--d:1.8"></i>
+   <i class="fly leaf" style="left:18%;top:60%;--x:-58vw;--y:24vh;--r:-160deg;--d:.8"></i>
+   <i class="fly shard" style="left:78%;top:48%;--x:64vw;--y:10vh;--r:90deg;--d:1.2"></i>
+   <i class="fly shard big" style="left:42%;top:14%;--x:-18vw;--y:-34vh;--r:-120deg;--d:1.6"></i>
+   <i class="fly shard" style="left:12%;top:40%;--x:-70vw;--y:-4vh;--r:140deg;--d:1.1"></i>
+   <i class="fly leaf" style="left:84%;top:70%;--x:56vw;--y:28vh;--r:220deg;--d:1.5"></i>
+   <i class="fly shard" style="left:58%;top:36%;--x:34vw;--y:-30vh;--r:-70deg;--d:.9"></i>
+   <i class="fly leaf big" style="left:34%;top:76%;--x:-30vw;--y:30vh;--r:-240deg;--d:1.3"></i>
   </div>
-  <div class="chips"><span>Lightroom</span><span>Illustrator</span><span>After Effects</span></div>
+  <dl class="info">
+   <dt>L’intention</dt><dd>Montrer qu’on peut faire naître du mouvement à partir d’une simple photo : décomposer l’image, puis la laisser déborder.</dd>
+   <dt>Les étapes</dt><dd>Retouche de la photo, création des éléments flottants, découpage en calques, animation avec parallaxe.</dd>
+   <dt>Outils</dt><dd>Lightroom · Illustrator · After Effects</dd>
+  </dl>
   <div class="sb"><div>Photo initiale</div><div>Retouches Lightroom</div><div>Éléments Illustrator</div></div>
+  <div class="vslot h169 small" data-v="s4"></div>
+  <aside class="insp"><span class="g">⌁</span><div><b>Mon univers ici</b>Fallen Angel : un monde numérique tout en bleu, des glitchs, des fragments qui tombent et s’envolent, entre ange et machine.</div></aside>
  </div>
 </section>
 
@@ -104,27 +118,34 @@
 <section class="scene" id="s5" aria-label="Salle IV">
  <div class="wrap" style="justify-items:center;text-align:center">
   <h2>Motion design d’information</h2>
-  <p>Ici, le motion se met au service d’un message : informer, convaincre, donner envie. Passez sur l’écran pour le faire ressortir, puis choisissez une vidéo.</p>
+  <p>Ici, le motion se met au service d’un message : informer, convaincre, donner envie. Passez sur l’écran pour le faire ressortir, puis piochez une carte.</p>
   <div class="stage5" id="stage5" tabindex="0">
-   <div class="bgvid vslot-bg" id="bgvid" data-yt=""></div>
-   <div class="choices">
-    <button class="choice" data-yt="" data-titre="Motion d’information — vidéo 1"
+   <div class="bgvid vslot-bg" id="bgvid" data-v="bg5"></div>
+   <div class="deck" id="deck">
+    <button class="choice back" data-v="v5a" data-titre="Motion d’information — vidéo 1"
       data-brief="Rendre lisible une information complexe en 45 secondes pour un public non spécialiste."
       data-role="Direction artistique, storyboard, animation, montage et sound design."
       data-outils="After Effects · Illustrator · Premiere Pro" data-duree="45 s · 3 semaines">
-      <span>▶</span> Vidéo 1</button>
-    <button class="choice" data-yt="" data-titre="Motion d’information — vidéo 2"
-      data-brief="Décliner le même message dans un format plus court pour les réseaux sociaux."
+      <small>Carte 1</small><b class="serif">Vidéo 1 — Le message</b><span>Rendre une information complexe claire en 45 secondes.</span><em>▶ Ouvrir</em></button>
+    <button class="choice front" data-v="v5b" data-titre="Motion d’information — vidéo 2"
+      data-brief="Décliner le même message dans un format plus court et vertical pour les réseaux sociaux."
       data-role="Adaptation verticale, rythme, typographie animée."
       data-outils="After Effects · Illustrator" data-duree="20 s · 1 semaine">
-      <span>▶</span> Vidéo 2</button>
+      <small>Carte 2</small><b class="serif">Vidéo 2 — Version courte</b><span>Le même message, au format réseaux sociaux.</span><em>▶ Ouvrir</em></button>
    </div>
   </div>
+  <p class="sm hint5">Cliquez sur la carte du fond pour la ramener devant, puis sur la carte devant pour ouvrir la vidéo.</p>
+  <dl class="info tl">
+   <dt>Le projet</dt><dd>Un motion design d’information, pensé comme une publicité : un message clair, un rythme tenu et une identité visuelle cohérente du début à la fin.</dd>
+   <dt>Le défi</dt><dd>Condenser l’information sans perdre l’émotion, et adapter la même idée à deux formats.</dd>
+   <dt>Ce que j’en retiens</dt><dd>Un bon motion commercial se construit d’abord sur le storyboard : chaque seconde doit servir le message.</dd>
+  </dl>
+  <aside class="insp"><span class="g">♡</span><div><b>Mon univers ici</b>Le kdrama : des tons rose poudré, des plans qui prennent leur temps, de l’émotion dans les détails et un vrai sens du récit.</div></aside>
  </div>
  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Vidéo">
   <div class="box"><button class="x" id="mx" aria-label="Fermer">×</button>
    <h3 class="serif" id="mtitre"></h3>
-   <div class="vslot h169" id="mvid" data-yt=""></div>
+   <div class="vslot h169" id="mvid" data-v=""></div>
    <dl>
     <dt>Le brief</dt><dd id="mbrief"></dd>
     <dt>Mon rôle</dt><dd id="mrole"></dd>
@@ -141,11 +162,12 @@
  <div class="hall">
   <div class="wall"></div><div class="floor"></div>
   <div class="painting">
+   <div class="spot" aria-hidden="true"></div>
    <button class="drop" id="drop" aria-label="Ramasser la carte"></button>
-   <div class="frame"><div class="art"><span class="serif">Dernière œuvre</span></div></div>
-   <div class="label serif">Œuvre n° 5 — <i>La carte</i><br><small>Technique mixte, papier et souvenirs</small></div>
+   <div class="frame"><div class="art"><span class="serif">Quatre salles, un univers</span></div></div>
+   <div class="label serif">Œuvre n° 5 — <i>La carte</i><br><small>Papier, souvenirs et mouvement</small></div>
   </div>
-  <p class="serif bye">La visite se termine. Ramassez la carte : elle vous suit.</p>
+  <p class="serif bye" id="bye">Quelque chose vient de tomber du cadre…</p>
  </div>
 </section>
 
