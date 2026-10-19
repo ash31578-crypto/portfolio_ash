@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Musée - Motion Designer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- INDICATEUR DE SALLE -->
+    <div class="room-indicator">
+        <span id="current-room">Accueil</span> / <span>Total: 5 Salles</span>
+    </div>
+
+    <!-- SCÈNE 1 : L'ACCUEIL (Ticket) -->
+    <section id="scene-1" class="scene active">
+        <div class="museum-lobby">
+            <h1>Bienvenue au Musée [Ton Nom]</h1>
+            <p class="intro-text">3 années de créativité. 4 expositions. Une histoire à raconter.</p>
+            
+            <div class="ticket-booth">
+                <div class="ticket" id="ticket">
+                    <div class="ticket-stub">
+                        <span>ADMISSION</span>
+                        <span>MOTION DESIGN</span>
+                    </div>
+                    <div class="ticket-body">
+                        <span>Entrée</span>
+                        <div class="perforation"></div>
+                    </div>
+                </div>
+                <p class="instruction">Cliquez pour déchirer votre ticket</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCÈNE 2 : MOTION MUSICAL (K-Pop) -->
+    <section id="scene-2" class="scene">
+        <div class="exhibition-hall kpop-style">
+            <h2>Salle 2 : Rythme & Mouvement</h2>
+            <p>Projet : Motion Design Cortis</p>
+            
+            <div class="album-interface">
+                <div class="album-cover">
+                    <!-- Image de la pochette -->
+                    <img src="path/to/greengreen-cover.jpg" alt="Album Cover">
+                </div>
+                <div class="track-list">
+                    <button class="track-btn" data-video="video1">Piste 1: Intro</button>
+                    <button class="track-btn" data-video="video2">Piste 2: Chorus</button>
+                </div>
+            </div>
+            
+            <div class="video-player hidden">
+                <video id="video1" loop muted>
+                    <source src="path/to/motion-cortis.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCÈNE 3 : BRANDING (Genshin/Calme) -->
+    <section id="scene-3" class="scene">
+        <div class="exhibition-hall genshin-style">
+            <h2>Salle 3 : De l'Statique au Dynamique</h2>
+            <p>Projet : Branding & Déclinaison</p>
+
+            <div class="interactive-timeline">
+                <input type="range" min="0" max="100" value="0" class="slider" id="brand-slider">
+                <div class="visual-container">
+                    <img src="path/to/poster-static.png" class="layer static-layer" alt="Affiche Statique">
+                    <img src="path/to/poster-motion.gif" class="layer motion-layer" alt="Motion">
+                </div>
+                <p class="info-box">Logiciels : After Effects, Illustrator</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCÈNE 4 : PHOTOMONTAGE (Glitch/Nature) -->
+    <section id="scene-4" class="scene">
+        <div class="exhibition-hall digital-glitch">
+            <h2>Salle 4 : L'Image Vivante</h2>
+            <p>Concept : Photomontage Animé</p>
+            
+            <div class="hover-zone" id="hover-zone">
+                <div class="static-image">
+                    <img src="path/to/photomontage-base.jpg" alt="Base">
+                </div>
+                <div class="animated-overlay">
+                    <!-- Éléments flottants qui apparaissent au survol -->
+                    <div class="floating-element el-1">Particule</div>
+                    <div class="floating-element el-2">Glitch</div>
+                </div>
+            </div>
+            <p class="hint">Survoler l'image pour révéler le mouvement</p>
+        </div>
+    </section>
+
+    <!-- SCÈNE 5 : PUB & CARTE FINALE -->
+    <section id="scene-5" class="scene">
+        <div class="exhibition-hall commercial">
+            <h2>Salle 5 : L'Impact Commercial</h2>
+            <button class="cta-button" onclick="openPopup()">Voir la Publicité</button>
+        </div>
+    </section>
+
+    <!-- OVERLAY CARTE DE VISITE (Fin) -->
+    <div id="business-card-overlay" class="overlay hidden">
+        <div class="card-container">
+            <div class="card">
+                <div class="card-front">
+                    <h1>[Ton Prénom] [Ton Nom]</h1>
+                    <p>Motion Designer</p>
+                    <div class="art-piece">Storyboards stylisés...</div>
+                </div>
+                <div class="card-back">
+                    <p>« Chaque projet est une histoire à raconter. Parlons de la nôtre. »</p>
+                    <ul class="contact-info">
+                        <li>email@exemple.com</li>
+                        <li>linkedin.com/in/tonprofil</li>
+                        <li>+33 6 00 00 00 00</li>
+                    </ul>
+                    <a href="cv.pdf" class="download-btn">Télécharger le CV</a>
+                    <div class="qr-code">[QR Code]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
