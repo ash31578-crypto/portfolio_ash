@@ -4,95 +4,148 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Le Musée — Portfolio de Motion Design</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Syne:wght@500;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Syne:wght@500;800&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="hud"><button id="mute" aria-pressed="false">Son : activé</button><span id="loc" aria-live="polite"></span></div>
+<!--
+  MODE D’EMPLOI RAPIDE
+  • Vidéos YouTube : sur chaque élément class="vslot", remplace data-yt="" par l’identifiant
+    de la vidéo (la fin du lien : youtube.com/watch?v=IDENTIFIANT). Pour un Short : youtube.com/shorts/IDENTIFIANT.
+  • Images : mets-les dans le dossier img/ (ex. img/cortis-cover.jpg).
+  • Couleurs et fonds : tout en haut de style.css, bloc « PERSONNALISATION ».
+  • Musiques : tout en haut de script.js, tableau MUSIQUES.
+-->
+<div id="hud">
+ <button id="mute" aria-pressed="false">Son : activé</button>
+ <div id="plaque" aria-live="polite"></div>
+</div>
 
-<!-- SCÈNE 1 : Accueil -->
+<!-- ============ SCÈNE 1 : ACCUEIL ============ -->
 <section class="scene active" id="s1" aria-label="Accueil">
- <div class="wrap" style="justify-items:center">
-  <h1 style="font-size:clamp(40px,8vw,84px)">Le Musée de Prénom NOM</h1>
-  <p class="serif" style="font-size:22px">Trois années de création, quatre salles, une œuvre à emporter.</p>
+ <div class="wrap" style="justify-items:center;text-align:center">
+  <h1>Le Musée de Prénom NOM</h1>
+  <p class="serif lead">Trois années de création, quatre salles, une œuvre à emporter.</p>
   <button class="ticket" id="ticket" aria-label="Déchirer le ticket pour entrer">
    <div class="a"><div><div class="serif" style="font-size:30px">Billet d’entrée</div><div class="sm">Exposition permanente · Motion Design</div><div class="sm" style="margin-top:8px">Cliquez pour déchirer</div></div></div>
    <div class="b">N° 0001</div>
   </button>
   <div class="plan" id="plan">
-   <div><b>Salle 1</b><br>Motion musical</div><div><b>Salle 2</b><br>Affiche animée</div><div><b>Salle 3</b><br>Photomontage</div><div><b>Salle 4</b><br>Publicité</div>
+   <div><b>Salle I</b><br>Motion musical</div><div><b>Salle II</b><br>Affiche animée</div><div><b>Salle III</b><br>Photomontage</div><div><b>Salle IV</b><br>Publicité</div>
   </div>
  </div>
 </section>
 
-<!-- SCÈNE 2 : Motion musical -->
-<section class="scene" id="s2" aria-label="Salle 1">
+<!-- ============ SCÈNE 2 : MOTION MUSICAL ============ -->
+<section class="scene" id="s2" aria-label="Salle I">
  <div class="wrap album">
-  <div class="cover" aria-hidden="true"><b>GREEN<br>GREEN</b></div>
+  <div class="cover">
+   <img src="img/cortis-cover.jpg" alt="Pochette de l’album Cortis" onerror="this.remove()">
+   <b aria-hidden="true">CORTIS</b>
+  </div>
   <div>
-   <h2>Motion design musical</h2>
-   <p class="sm" style="margin-top:10px">Projet : motion design Cortis (K-pop). Choisissez une piste pour lancer la vidéo.</p>
+   <h2>Quand les lettres suivent le rythme</h2>
+   <p class="sm" style="margin-top:10px">Deux pistes, deux motion designs composés sur du K-pop. Posez l’aiguille sur une piste pour lancer la vidéo.</p>
    <div class="tracks" id="tracks">
-    <button data-t="Piste 1 · Typo cinétique">▶ Piste 1 — Typographie cinétique</button>
-    <button data-t="Piste 2 · Version complète">▶ Piste 2 — Version complète</button>
-    <button data-t="Piste 3 · Making-of">▶ Piste 3 — Making-of</button>
+    <button data-p="p1">▶ Piste 1 — Titre du projet 1</button>
+    <button data-p="p2">▶ Piste 2 — Titre du projet 2</button>
    </div>
-   <div class="player" id="player"><div class="t" id="ptitle">GREENGREEN</div></div>
-   <div class="chips"><span>After Effects</span><span>Illustrator</span><span>Premiere Pro</span></div>
-   <div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div>
+   <div class="proj" id="p1">
+    <div class="vslot h169" data-yt=""></div>
+    <div class="chips"><span>After Effects</span><span>Illustrator</span><span>Premiere Pro</span></div>
+    <div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div>
+   </div>
+   <div class="proj" id="p2">
+    <div class="vslot h169" data-yt=""></div>
+    <div class="chips"><span>After Effects</span><span>Illustrator</span></div>
+    <div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div>
+   </div>
   </div>
  </div>
 </section>
 
-<!-- SCÈNE 3 : Affiche → mobile -->
-<section class="scene" id="s3" aria-label="Salle 2">
+<!-- ============ SCÈNE 3 : AFFICHE → MOBILE ============ -->
+<section class="scene" id="s3" aria-label="Salle II">
  <div class="wrap">
-  <h2>De l’affiche statique au mobile dynamique</h2>
-  <p>Un même projet de branding, décliné du print au digital. Déplacez le curseur pour faire vivre l’affiche.</p>
-  <div class="stage"><div class="orb" id="orb"></div><div class="poster" id="poster">Affiche</div></div>
-  <label class="sm" for="tl">Timeline : Print → Digital</label>
-  <input type="range" id="tl" min="0" max="100" value="0">
+  <h2>Du papier à l’écran</h2>
+  <p>Un même univers visuel, pensé pour le print puis donné au mouvement. Faites glisser le curseur pour suivre trois étapes : le storyboard, la version statique, puis l’animation.</p>
+  <div class="trio" id="trio" data-step="0">
+   <!-- 2 projets horizontaux (même hauteur) + 1 vertical -->
+   <figure class="card h"><div class="s s0">Storyboard<br>projet 1</div><div class="s s1">Statique<br>projet 1</div><div class="s s2"><div class="vslot" data-yt=""></div></div></figure>
+   <figure class="card h"><div class="s s0">Storyboard<br>projet 2</div><div class="s s1">Statique<br>projet 2</div><div class="s s2"><div class="vslot" data-yt=""></div></div></figure>
+   <figure class="card v"><div class="s s0">Storyboard<br>projet 3</div><div class="s s1">Statique<br>projet 3</div><div class="s s2"><div class="vslot" data-yt=""></div></div></figure>
+  </div>
+  <div class="steps"><span>1 · Storyboard</span><span>2 · Statique</span><span>3 · Animation</span></div>
+  <input type="range" id="tl" min="0" max="2" step="1" value="0" aria-label="Étape du projet">
   <div class="chips"><span>Illustrator</span><span>Photoshop</span><span>After Effects</span></div>
  </div>
 </section>
 
-<!-- SCÈNE 4 : Photomontage -->
-<section class="scene" id="s4" aria-label="Salle 3">
+<!-- ============ SCÈNE 4 : PHOTOMONTAGE ============ -->
+<section class="scene" id="s4" aria-label="Salle III">
  <div class="wrap">
   <h2>Photomontage animé</h2>
-  <p>L’image semble figée. Passez la souris (ou touchez) pour la réveiller.</p>
+  <p>L’image semble figée. Passez la souris (ou touchez-la) : les éléments quittent le cadre et envahissent la page.</p>
   <div class="photo" id="photo" tabindex="0" aria-label="Photomontage animé">
-   <i class="moon" data-d="14"></i><i class="ground" data-d="-6"></i>
-   <i class="leaf" style="left:20%;top:30%" data-d="30"></i><i class="leaf" style="left:70%;top:20%" data-d="22"></i><i class="leaf" style="left:55%;top:55%" data-d="40"></i><i class="leaf" style="left:32%;top:62%" data-d="18"></i>
+   <div class="pic"><i class="moon"></i><i class="ground"></i></div>
+   <i class="fly leaf" style="left:30%;top:30%;--x:-300px;--y:-140px;--r:-80deg;--d:1.4"></i>
+   <i class="fly leaf" style="left:62%;top:20%;--x:320px;--y:-120px;--r:70deg;--d:1"></i>
+   <i class="fly leaf" style="left:50%;top:60%;--x:80px;--y:210px;--r:140deg;--d:1.8"></i>
+   <i class="fly leaf" style="left:20%;top:62%;--x:-340px;--y:150px;--r:-120deg;--d:.8"></i>
+   <i class="fly shard" style="left:75%;top:50%;--x:340px;--y:60px;--r:30deg;--d:1.2"></i>
+   <i class="fly shard" style="left:40%;top:15%;--x:-60px;--y:-200px;--r:-45deg;--d:1.6"></i>
   </div>
-  <div class="chips"><span>Photoshop</span><span>After Effects</span><span>Photos d’origine → retouches</span></div>
-  <div class="sb"><div>Photo initiale</div><div>Calques</div><div>Résultat</div></div>
+  <div class="chips"><span>Lightroom</span><span>Illustrator</span><span>After Effects</span></div>
+  <div class="sb"><div>Photo initiale</div><div>Retouches Lightroom</div><div>Éléments Illustrator</div></div>
  </div>
 </section>
 
-<!-- SCÈNE 5 : Publicité -->
-<section class="scene" id="s5" aria-label="Salle 4">
+<!-- ============ SCÈNE 5 : PUBLICITÉ ============ -->
+<section class="scene" id="s5" aria-label="Salle IV">
  <div class="wrap" style="justify-items:center;text-align:center">
   <h2>Motion design d’information</h2>
-  <p>Une création plus commerciale. Cliquez sur la miniature pour voir la vidéo complète.</p>
-  <button class="thumb" id="thumb" aria-label="Ouvrir la vidéo"><span>▶</span></button>
+  <p>Ici, le motion se met au service d’un message : informer, convaincre, donner envie. Passez sur l’écran pour le faire ressortir, puis choisissez une vidéo.</p>
+  <div class="stage5" id="stage5" tabindex="0">
+   <div class="bgvid vslot-bg" id="bgvid" data-yt=""></div>
+   <div class="choices">
+    <button class="choice" data-yt="" data-titre="Motion d’information — vidéo 1"
+      data-brief="Rendre lisible une information complexe en 45 secondes pour un public non spécialiste."
+      data-role="Direction artistique, storyboard, animation, montage et sound design."
+      data-outils="After Effects · Illustrator · Premiere Pro" data-duree="45 s · 3 semaines">
+      <span>▶</span> Vidéo 1</button>
+    <button class="choice" data-yt="" data-titre="Motion d’information — vidéo 2"
+      data-brief="Décliner le même message dans un format plus court pour les réseaux sociaux."
+      data-role="Adaptation verticale, rythme, typographie animée."
+      data-outils="After Effects · Illustrator" data-duree="20 s · 1 semaine">
+      <span>▶</span> Vidéo 2</button>
+   </div>
+  </div>
  </div>
- <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Vidéo publicitaire">
+ <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Vidéo">
   <div class="box"><button class="x" id="mx" aria-label="Fermer">×</button>
-   <div class="vid">Votre vidéo ici</div>
-   <p class="sm">Spot publicitaire en motion design : brief, direction artistique, animation.</p>
-   <div class="chips"><span>After Effects</span><span>Illustrator</span><span>Premiere Pro</span></div>
+   <h3 class="serif" id="mtitre"></h3>
+   <div class="vslot h169" id="mvid" data-yt=""></div>
+   <dl>
+    <dt>Le brief</dt><dd id="mbrief"></dd>
+    <dt>Mon rôle</dt><dd id="mrole"></dd>
+    <dt>Outils</dt><dd id="moutils"></dd>
+    <dt>Format</dt><dd id="mduree"></dd>
+   </dl>
    <div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div>
   </div>
  </div>
 </section>
 
-<!-- SCÈNE 6 : Sortie -->
+<!-- ============ SCÈNE 6 : SORTIE ============ -->
 <section class="scene" id="s6" aria-label="Sortie">
- <div style="width:100%">
-  <div class="frame">Dernier tableau</div>
-  <button class="drop" id="drop" aria-label="Ramasser la carte"><span class="serif" style="font-size:20px">Carte</span></button>
-  <p class="serif" style="font-size:22px;margin:240px auto 0">La visite se termine. Ramassez la carte, elle vous suit.</p>
+ <div class="hall">
+  <div class="wall"></div><div class="floor"></div>
+  <div class="painting">
+   <button class="drop" id="drop" aria-label="Ramasser la carte"></button>
+   <div class="frame"><div class="art"><span class="serif">Dernière œuvre</span></div></div>
+   <div class="label serif">Œuvre n° 5 — <i>La carte</i><br><small>Technique mixte, papier et souvenirs</small></div>
+  </div>
+  <p class="serif bye">La visite se termine. Ramassez la carte : elle vous suit.</p>
  </div>
 </section>
 
@@ -100,22 +153,25 @@
  <button class="flip" id="flip" aria-label="Retourner la carte">
   <div class="face r">
    <div class="tag">Membre</div>
-   <div class="serif" style="font-size:clamp(22px,5vw,34px)">Prénom NOM</div>
+   <div class="serif nm">Prénom NOM</div>
    <div class="sm">Motion Designer</div>
-   <div class="art"></div>
+   <div class="mini"></div>
    <div class="sm serif">Cliquez pour retourner</div>
   </div>
   <div class="face v">
    <canvas id="qr" width="21" height="21" aria-label="QR code"></canvas>
    <div>prenom.nom@email.fr<br>06 00 00 00 00<br>linkedin.com/in/prenom-nom</div>
-   <div><a href="#" style="color:inherit" onclick="event.stopPropagation()">Télécharger le CV</a> · <a href="#" style="color:inherit" onclick="event.stopPropagation()">Carte numérique (PDF)</a></div>
-   <div class="serif" style="font-size:clamp(14px,3.4vw,22px);margin-top:6px"><i>Chaque projet est une histoire à raconter. Parlons de la nôtre.</i></div>
+   <div><a href="#" onclick="event.stopPropagation()">Télécharger le CV</a> · <a href="#" onclick="event.stopPropagation()">Carte numérique (PDF)</a></div>
+   <div class="serif accroche"><i>Chaque projet est une histoire à raconter. Parlons de la nôtre.</i></div>
   </div>
  </button>
- <button class="close" id="cx" aria-label="Fermer la carte" style="color:#fff">×</button>
+ <button class="close" id="cx" aria-label="Fermer la carte">×</button>
 </div>
 
-<button id="next" hidden>Salle suivante</button>
+<nav id="nav" aria-label="Navigation de la visite">
+ <button id="back" hidden>← Retour</button>
+ <button id="next" hidden>Salle suivante →</button>
+</nav>
 
 <script src="script.js"></script>
 </body>
