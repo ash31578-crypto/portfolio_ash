@@ -8,193 +8,179 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!--
-  MODE D’EMPLOI RAPIDE
-  • Vidéos YouTube : tout en haut de script.js, tableau VIDEOS (colle l’identifiant de chaque vidéo).
-  • Images : dossier img/ (ex. img/cortis-cover.jpg).
-  • Couleurs, fonds et motifs : haut de style.css, bloc « PERSONNALISATION ».
-  • Musiques et salles silencieuses : haut de script.js.
-  • Textes « Univers » de chaque salle : balises <aside class="insp"> ci-dessous.
--->
+<!-- Vidéos : tableau VIDEOS dans script.js · Couleurs, murs, sols : haut de style.css · Images : dossier img/ -->
 <div id="hud">
- <div class="hl"><button id="home" hidden>⌂ Accueil</button><button id="mute" aria-pressed="false">Son : activé</button></div>
+ <div class="hl"><button id="home" hidden>⌂ Hall d’accueil</button><button id="mute" aria-pressed="false">Son : activé</button></div>
  <div id="plaque" aria-live="polite"></div>
 </div>
 
-<!-- ============ SCÈNE 1 : ACCUEIL ============ -->
-<section class="scene active" id="s1" aria-label="Accueil">
- <div class="wrap" style="justify-items:center;text-align:center">
-  <h1>Le Musée de Prénom NOM</h1>
-  <p class="serif lead">Trois années de création, quatre salles, une œuvre à emporter.</p>
-  <button class="ticket" id="ticket" aria-label="Déchirer le ticket pour entrer">
-   <div class="a"><div><div class="serif" style="font-size:30px">Billet d’entrée</div><div class="sm">Exposition permanente · Motion Design</div><div class="sm" style="margin-top:8px">Cliquez pour déchirer</div></div></div>
-   <div class="b">N° 0001</div>
-  </button>
-  <div class="plan" id="plan">
-   <div><b>Salle I</b><br>Motion musical</div><div><b>Salle II</b><br>Affiche animée</div><div><b>Salle III</b><br>Photomontage</div><div><b>Salle IV</b><br>Publicité</div>
+<!-- ===== HALL D’ACCUEIL ===== -->
+<section class="scene active" id="s1" aria-label="Hall d’accueil">
+ <div class="ceil"></div>
+ <div class="wall">
+  <i></i>
+  <div class="main">
+   <h1 class="serif">Le Musée de Prénom NOM</h1>
+   <p class="walltext">Trois années de création, quatre salles à découvrir, un souvenir à garder.</p>
+   <div class="plan art" id="plan"><b class="serif">Plan du musée</b>
+    <div><span>I</span>Motion musical</div><div><span>II</span>Affiche animée</div><div><span>III</span>Photomontage</div><div><span>IV</span>Publicité</div></div>
+   <div class="guichet"><div class="sign serif">Billetterie</div><div class="window"></div><div class="desk">
+    <button class="ticket" id="ticket" aria-label="Déchirer le ticket pour entrer">
+     <div class="a"><div><div class="serif" style="font-size:24px">Billet d’entrée</div><div class="sm">Exposition permanente · Motion Design</div><div class="sm" style="margin-top:6px">Cliquez pour déchirer</div></div></div>
+     <div class="b">N° 0001</div>
+    </button>
+    <span class="deskl">Guichet</span>
+    </div></div>
   </div>
+  <button class="arrow next locked" data-go="1" id="d1"><span>Salle I</span></button>
  </div>
+ <div class="floor"><div class="carpet"></div></div>
 </section>
 
-<!-- ============ SCÈNE 2 : MOTION MUSICAL ============ -->
+<!-- ===== SALLE I : MOTION MUSICAL ===== -->
 <section class="scene" id="s2" aria-label="Salle I">
- <div class="wrap album">
-  <div class="disc" id="disc">
-   <div class="cd" aria-hidden="true"></div>
-   <div class="cover">
-    <img src="img/cortis-cover.jpg" alt="Pochette de l’album Cortis" onerror="this.remove()">
-    <b aria-hidden="true">CORTIS</b>
+ <div class="ceil"></div>
+ <div class="wall">
+  <button class="arrow back" data-go="-1"><span>← Hall</span></button>
+  <div class="main">
+   <p class="walltext"><small>Salle I · Mon univers : K-pop, album GREENGREEN</small>Le disque tourne, les lettres dansent</p>
+   <div class="row">
+    <figure><div class="sl"><div class="art cov"><img src="img/cortis-cover.jpg" alt="Pochette de l’album Cortis" onerror="this.remove()"><b aria-hidden="true">CORTIS</b></div>
+     <div class="cdw" id="cdw" tabindex="0" role="slider" aria-label="Disque : faites-le tourner pour choisir une piste"><div class="cd" id="cd"><b class="s1">1</b><b class="s2">2</b></div></div></div>
+     <figcaption class="cartel" id="c2"><b class="serif">GREENGREEN</b>Faites tourner le disque : il fait apparaître les vidéos.</figcaption></figure>
+    <figure class="screenfig"><div class="art screen">
+      <div class="proj" id="p1"><div class="vslot h169" data-v="p1"></div></div>
+      <div class="proj" id="p2"><div class="vslot h169" data-v="p2"></div></div>
+      <div class="idle" id="idle">En attente d’une piste…</div></div>
+     <div class="proj" id="t1"><div class="chips"><span>After Effects</span><span>Illustrator</span></div><div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div></div>
+     <div class="proj" id="t2"><div class="chips"><span>After Effects</span><span>Illustrator</span></div><div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div></div>
+    </figure>
    </div>
   </div>
-  <div>
-   <h2>Le disque tourne, les lettres dansent</h2>
-   <p class="sm" style="margin-top:10px">Un album, deux pistes : deux motion designs composés sur du K-pop. Choisissez une piste et le disque se met à tourner.</p>
-   <div class="tracks" id="tracks">
-    <button data-p="p1">▶ Piste 1 — Titre du projet 1</button>
-    <button data-p="p2">▶ Piste 2 — Titre du projet 2</button>
-   </div>
-   <div class="proj" id="p1">
-    <div class="vslot h169" data-v="p1"></div>
-    <div class="chips"><span>After Effects</span><span>Illustrator</span></div>
-    <div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div>
-   </div>
-   <div class="proj" id="p2">
-    <div class="vslot h169" data-v="p2"></div>
-    <div class="chips"><span>After Effects</span><span>Illustrator</span><span>Premiere Pro</span></div>
-    <div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div>
-   </div>
-   <aside class="insp"><span class="g">♪</span><div><b>Mon univers ici</b>K-pop et album GREENGREEN : l’énergie, la typographie qui bouge au rythme du son, des verts vifs et un côté « pochette qui prend vie ».</div></aside>
-  </div>
+  <button class="arrow next" data-go="1"><span>Salle II</span></button>
  </div>
+ <div class="floor"><div class="bench"></div></div>
 </section>
 
-<!-- ============ SCÈNE 3 : AFFICHE → MOBILE ============ -->
+<!-- ===== SALLE II : AFFICHE → MOBILE ===== -->
 <section class="scene" id="s3" aria-label="Salle II">
- <div class="wrap">
-  <h2>Une affiche qui s’éveille</h2>
-  <p>Je pars d’une idée sur le papier, je la fixe en affiche, puis je lui donne du souffle. Déplacez le curseur pour suivre le chemin : storyboard, statique, animation.</p>
-  <div class="trio" id="trio" data-step="0">
-   <figure class="card h"><div class="s s0">Storyboard<br>projet 1</div><div class="s s1">Statique<br>projet 1</div><div class="s s2"><div class="vslot" data-v="s3a"></div></div></figure>
-   <figure class="card h"><div class="s s0">Storyboard<br>projet 2</div><div class="s s1">Statique<br>projet 2</div><div class="s s2"><div class="vslot" data-v="s3b"></div></div></figure>
-   <figure class="card v"><div class="s s0">Storyboard<br>projet 3</div><div class="s s1">Statique<br>projet 3</div><div class="s s2"><div class="vslot" data-v="s3c"></div></div></figure>
+ <div class="ceil"></div>
+ <div class="wall">
+  <button class="arrow back" data-go="-1"><span>← Salle I</span></button>
+  <div class="main">
+   <p class="walltext"><small>Salle II · Mon univers : Genshin, calme et lumière douce</small>Une affiche qui s’éveille</p>
+   <p class="sm c">Trois tableaux, un même chemin : du print au digital. Déplacez le curseur pour voir les étapes de création.</p>
+   <div class="trio" id="trio" data-step="0">
+    <figure><div class="art"><div class="card h"><div class="s s0">Storyboard<br>projet 1</div><div class="s s1">Statique<br>projet 1</div><div class="s s2"><div class="vslot" data-v="s3a"></div></div></div></div><figcaption class="cartel"><b class="serif">Projet 1</b>Illustrator · After Effects</figcaption></figure>
+    <figure><div class="art"><div class="card h"><div class="s s0">Storyboard<br>projet 2</div><div class="s s1">Statique<br>projet 2</div><div class="s s2"><div class="vslot" data-v="s3b"></div></div></div></div><figcaption class="cartel"><b class="serif">Projet 2</b>Illustrator · After Effects</figcaption></figure>
+    <figure><div class="art"><div class="card v"><div class="s s0">Storyboard<br>projet 3</div><div class="s s1">Statique<br>projet 3</div><div class="s s2"><div class="vslot" data-v="s3c"></div></div></div></div><figcaption class="cartel"><b class="serif">Projet 3</b>Photoshop · After Effects</figcaption></figure>
+   </div>
+   <div class="slider"><div class="steps"><span>1 · Storyboard</span><span>2 · Affiche (print)</span><span>3 · Animation (digital)</span></div><input type="range" id="tl" min="0" max="2" step="1" value="0" aria-label="Étape de création, du print au digital"></div>
   </div>
-  <div class="steps"><span>1 · Storyboard</span><span>2 · Statique</span><span>3 · Animation</span></div>
-  <input type="range" id="tl" min="0" max="2" step="1" value="0" aria-label="Étape du projet">
-  <div class="chips"><span>Illustrator</span><span>Photoshop</span><span>After Effects</span></div>
-  <aside class="insp"><span class="g">✦</span><div><b>Mon univers ici</b>L’esprit de Genshin : une salle calme, des lumières douces, des mouvements lents et fluides, comme un décor qui respire.</div></aside>
+  <button class="arrow next" data-go="1"><span>Salle III</span></button>
  </div>
+ <div class="floor"><div class="bench"></div></div>
 </section>
 
-<!-- ============ SCÈNE 4 : PHOTOMONTAGE ============ -->
+<!-- ===== SALLE III : PHOTOMONTAGE ===== -->
 <section class="scene" id="s4" aria-label="Salle III">
- <div class="wrap">
-  <h2>Photomontage animé</h2>
-  <p>Une photo, un instant figé. Passez la souris dessus : le décor se réveille et les éléments s’échappent de la page, comme si l’image ne pouvait plus les contenir.</p>
-  <div class="photo" id="photo" tabindex="0" aria-label="Photomontage animé : survolez pour lancer">
-   <div class="pic"><i class="moon"></i><i class="ground"></i><span class="cue">Passez la souris</span></div>
-   <i class="fly leaf" style="left:28%;top:30%;--x:-62vw;--y:-22vh;--r:-200deg;--d:1.4"></i>
-   <i class="fly leaf" style="left:64%;top:18%;--x:60vw;--y:-26vh;--r:180deg;--d:1"></i>
-   <i class="fly leaf big" style="left:50%;top:62%;--x:10vw;--y:34vh;--r:260deg;--d:1.8"></i>
-   <i class="fly leaf" style="left:18%;top:60%;--x:-58vw;--y:24vh;--r:-160deg;--d:.8"></i>
-   <i class="fly shard" style="left:78%;top:48%;--x:64vw;--y:10vh;--r:90deg;--d:1.2"></i>
-   <i class="fly shard big" style="left:42%;top:14%;--x:-18vw;--y:-34vh;--r:-120deg;--d:1.6"></i>
-   <i class="fly shard" style="left:12%;top:40%;--x:-70vw;--y:-4vh;--r:140deg;--d:1.1"></i>
-   <i class="fly leaf" style="left:84%;top:70%;--x:56vw;--y:28vh;--r:220deg;--d:1.5"></i>
-   <i class="fly shard" style="left:58%;top:36%;--x:34vw;--y:-30vh;--r:-70deg;--d:.9"></i>
-   <i class="fly leaf big" style="left:34%;top:76%;--x:-30vw;--y:30vh;--r:-240deg;--d:1.3"></i>
-  </div>
-  <dl class="info">
-   <dt>L’intention</dt><dd>Montrer qu’on peut faire naître du mouvement à partir d’une simple photo : décomposer l’image, puis la laisser déborder.</dd>
-   <dt>Les étapes</dt><dd>Retouche de la photo, création des éléments flottants, découpage en calques, animation avec parallaxe.</dd>
-   <dt>Outils</dt><dd>Lightroom · Illustrator · After Effects</dd>
-  </dl>
-  <div class="sb"><div>Photo initiale</div><div>Retouches Lightroom</div><div>Éléments Illustrator</div></div>
-  <div class="vslot h169 small" data-v="s4"></div>
-  <aside class="insp"><span class="g">⌁</span><div><b>Mon univers ici</b>Fallen Angel : un monde numérique tout en bleu, des glitchs, des fragments qui tombent et s’envolent, entre ange et machine.</div></aside>
- </div>
-</section>
-
-<!-- ============ SCÈNE 5 : PUBLICITÉ ============ -->
-<section class="scene" id="s5" aria-label="Salle IV">
- <div class="wrap" style="justify-items:center;text-align:center">
-  <h2>Motion design d’information</h2>
-  <p>Ici, le motion se met au service d’un message : informer, convaincre, donner envie. Passez sur l’écran pour le faire ressortir, puis piochez une carte.</p>
-  <div class="stage5" id="stage5" tabindex="0">
-   <div class="bgvid vslot-bg" id="bgvid" data-v="bg5"></div>
-   <div class="deck" id="deck">
-    <button class="choice back" data-v="v5a" data-titre="Motion d’information — vidéo 1"
-      data-brief="Rendre lisible une information complexe en 45 secondes pour un public non spécialiste."
-      data-role="Direction artistique, storyboard, animation, montage et sound design."
-      data-outils="After Effects · Illustrator · Premiere Pro" data-duree="45 s · 3 semaines">
-      <small>Carte 1</small><b class="serif">Vidéo 1 — Le message</b><span>Rendre une information complexe claire en 45 secondes.</span><em>▶ Ouvrir</em></button>
-    <button class="choice front" data-v="v5b" data-titre="Motion d’information — vidéo 2"
-      data-brief="Décliner le même message dans un format plus court et vertical pour les réseaux sociaux."
-      data-role="Adaptation verticale, rythme, typographie animée."
-      data-outils="After Effects · Illustrator" data-duree="20 s · 1 semaine">
-      <small>Carte 2</small><b class="serif">Vidéo 2 — Version courte</b><span>Le même message, au format réseaux sociaux.</span><em>▶ Ouvrir</em></button>
+ <div class="ceil"></div>
+ <div class="wall">
+  <button class="arrow back" data-go="-1"><span>← Salle II</span></button>
+  <div class="main">
+   <p class="walltext"><small>Salle III · Mon univers : Fallen Angel, bleu numérique et glitch</small>Photomontage animé</p>
+   <div class="row">
+    <div class="photo" id="photo" tabindex="0" aria-label="Photomontage animé : survolez pour lancer">
+     <div class="pic"><i class="moon"></i><i class="ground"></i><span class="cue">Passez la souris</span></div>
+     <i class="fly leaf" style="left:28%;top:30%;--x:-62vw;--y:-22vh;--r:-200deg;--d:1.4"></i>
+     <i class="fly leaf" style="left:64%;top:18%;--x:60vw;--y:-26vh;--r:180deg;--d:1"></i>
+     <i class="fly leaf big" style="left:50%;top:62%;--x:10vw;--y:30vh;--r:260deg;--d:1.8"></i>
+     <i class="fly leaf" style="left:18%;top:60%;--x:-58vw;--y:24vh;--r:-160deg;--d:.8"></i>
+     <i class="fly shard" style="left:78%;top:48%;--x:64vw;--y:10vh;--r:90deg;--d:1.2"></i>
+     <i class="fly shard big" style="left:42%;top:14%;--x:-18vw;--y:-30vh;--r:-120deg;--d:1.6"></i>
+     <i class="fly shard" style="left:12%;top:40%;--x:-70vw;--y:-4vh;--r:140deg;--d:1.1"></i>
+     <i class="fly leaf" style="left:84%;top:70%;--x:56vw;--y:26vh;--r:220deg;--d:1.5"></i>
+     <i class="fly halo" style="left:46%;top:22%;--x:-42vw;--y:-10vh;--r:0deg;--d:1.3"></i>
+     <i class="fly halo big" style="left:60%;top:56%;--x:46vw;--y:-14vh;--r:0deg;--d:.9"></i>
+    </div>
+    <figure class="cartel wide"><b class="serif">Photomontage animé — Titre du projet</b>
+     Passez la souris sur la vidéo pour débloquer l’animation : des éléments bleus, esprit Fallen Angel, apparaissent alors dans le décor de la salle.<br><br>
+     <b>Étapes</b> retouche de la photo, éléments flottants, calques, animation en parallaxe.<br>
+     <b>Outils</b> Lightroom · Illustrator · After Effects
+     <div class="sb"><div>Photo initiale</div><div>Retouches Lightroom</div><div>Éléments Illustrator</div></div></figure>
    </div>
   </div>
-  <p class="sm hint5">Cliquez sur la carte du fond pour la ramener devant, puis sur la carte devant pour ouvrir la vidéo.</p>
-  <dl class="info tl">
-   <dt>Le projet</dt><dd>Un motion design d’information, pensé comme une publicité : un message clair, un rythme tenu et une identité visuelle cohérente du début à la fin.</dd>
-   <dt>Le défi</dt><dd>Condenser l’information sans perdre l’émotion, et adapter la même idée à deux formats.</dd>
-   <dt>Ce que j’en retiens</dt><dd>Un bon motion commercial se construit d’abord sur le storyboard : chaque seconde doit servir le message.</dd>
-  </dl>
-  <aside class="insp"><span class="g">♡</span><div><b>Mon univers ici</b>Le kdrama : des tons rose poudré, des plans qui prennent leur temps, de l’émotion dans les détails et un vrai sens du récit.</div></aside>
+  <button class="arrow next" data-go="1"><span>Salle IV</span></button>
  </div>
+ <div class="floor"><div class="bench"></div></div>
+</section>
+
+<!-- ===== SALLE IV : PUBLICITÉ ===== -->
+<section class="scene" id="s5" aria-label="Salle IV">
+ <div class="ceil"></div>
+ <div class="wall">
+  <button class="arrow back" data-go="-1"><span>← Salle III</span></button>
+  <div class="main">
+   <p class="walltext"><small>Salle IV · Mon univers : kdrama, rose poudré et émotion</small>Motion design d’information</p>
+   <div class="stage5" id="stage5" tabindex="0">
+    <div class="bgvid vslot-bg" id="bgvid" data-v="bg5"></div>
+    <div class="deck" id="deck">
+     <button class="choice back" data-v="v5a" data-titre="Motion d’information — vidéo 1" data-brief="Rendre lisible une information complexe en 45 secondes pour un public non spécialiste." data-role="Direction artistique, storyboard, animation, montage et sound design." data-outils="After Effects · Illustrator · Premiere Pro" data-duree="45 s · 3 semaines"><small>Carte 1</small><b class="serif">Vidéo 1 — Le message</b><span>Une information complexe rendue claire en 45 secondes.</span><em>▶ Ouvrir</em></button>
+     <button class="choice front" data-v="v5b" data-titre="Motion d’information — vidéo 2" data-brief="Décliner le même message dans un format court et vertical pour les réseaux sociaux." data-role="Adaptation verticale, rythme, typographie animée." data-outils="After Effects · Illustrator" data-duree="20 s · 1 semaine"><small>Carte 2</small><b class="serif">Vidéo 2 — Version courte</b><span>Le même message, au format réseaux sociaux.</span><em>▶ Ouvrir</em></button>
+    </div>
+   </div>
+   <p class="sm c">Passez devant l’écran pour le faire ressortir. Cliquez la carte du fond pour la ramener devant, puis la carte devant pour ouvrir la vidéo.</p>
+   <figure class="cartel wide"><b class="serif">Le projet</b>Un motion d’information pensé comme une publicité : un message clair, un rythme tenu, une identité cohérente.<br><br>
+    <b>Le défi</b> condenser l’information sans perdre l’émotion, et décliner l’idée en deux formats.<br>
+    <b>Ce que j’en retiens</b> un bon motion commercial naît du storyboard : chaque seconde sert le message.</figure>
+  </div>
+  <button class="arrow next" data-go="1"><span>Sortie</span></button>
+ </div>
+ <div class="floor"><div class="bench"></div></div>
  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Vidéo">
   <div class="box"><button class="x" id="mx" aria-label="Fermer">×</button>
    <h3 class="serif" id="mtitre"></h3>
    <div class="vslot h169" id="mvid" data-v=""></div>
-   <dl>
-    <dt>Le brief</dt><dd id="mbrief"></dd>
-    <dt>Mon rôle</dt><dd id="mrole"></dd>
-    <dt>Outils</dt><dd id="moutils"></dd>
-    <dt>Format</dt><dd id="mduree"></dd>
-   </dl>
+   <dl><dt>Le brief</dt><dd id="mbrief"></dd><dt>Mon rôle</dt><dd id="mrole"></dd><dt>Outils</dt><dd id="moutils"></dd><dt>Format</dt><dd id="mduree"></dd></dl>
    <div class="sb"><div>Storyboard 1</div><div>Storyboard 2</div><div>Storyboard 3</div></div>
   </div>
  </div>
 </section>
 
-<!-- ============ SCÈNE 6 : SORTIE ============ -->
+<!-- ===== SALLE FINALE ===== -->
 <section class="scene" id="s6" aria-label="Sortie">
- <div class="hall">
-  <div class="wall"></div><div class="floor"></div>
-  <div class="painting">
-   <div class="spot" aria-hidden="true"></div>
-   <button class="drop" id="drop" aria-label="Ramasser la carte"></button>
-   <div class="frame"><div class="art"><span class="serif">Quatre salles, un univers</span></div></div>
-   <div class="label serif">Œuvre n° 5 — <i>La carte</i><br><small>Papier, souvenirs et mouvement</small></div>
+ <div class="ceil"></div>
+ <div class="wall">
+  <button class="arrow back" data-go="-1"><span>← Salle IV</span></button>
+  <div class="main">
+   <div class="painting">
+    <div class="spot" aria-hidden="true"></div>
+    <button class="drop" id="drop" aria-label="Ramasser la carte"></button>
+    <div class="frame"><div class="mood">
+     <div style="--c:#17b26a"><img src="img/mood1.jpg" alt="" onerror="this.remove()"><span>K-pop</span></div>
+     <div style="--c:#9caf88"><img src="img/mood2.jpg" alt="" onerror="this.remove()"><span>Genshin</span></div>
+     <div style="--c:#4aa8ff"><img src="img/mood3.jpg" alt="" onerror="this.remove()"><span>Fallen Angel</span></div>
+     <div style="--c:#f2c4b8"><img src="img/mood4.jpg" alt="" onerror="this.remove()"><span>Kdrama</span></div>
+     <div style="--c:#c9a463"><img src="img/mood5.jpg" alt="" onerror="this.remove()"><span>Typo</span></div>
+     <div style="--c:#7a1f2b"><img src="img/mood6.jpg" alt="" onerror="this.remove()"><span>Couleurs</span></div></div></div>
+    <div class="cartel"><b class="serif">Œuvre n° 5 — Moodboard</b>Mes inspirations. La carte qui descend contient mon CV et mes coordonnées.</div>
+   </div>
   </div>
-  <p class="serif bye" id="bye">Quelque chose vient de tomber du cadre…</p>
+  <i></i>
  </div>
+ <div class="floor"><p class="serif bye" id="bye">Quelque chose vient de tomber du cadre…</p></div>
 </section>
 
 <div id="card" role="dialog" aria-modal="true" aria-label="Carte de visite">
  <button class="flip" id="flip" aria-label="Retourner la carte">
-  <div class="face r">
-   <div class="tag">Membre</div>
-   <div class="serif nm">Prénom NOM</div>
-   <div class="sm">Motion Designer</div>
-   <div class="mini"></div>
-   <div class="sm serif">Cliquez pour retourner</div>
-  </div>
-  <div class="face v">
-   <canvas id="qr" width="21" height="21" aria-label="QR code"></canvas>
+  <div class="face r"><div class="tag">Membre</div><div class="serif nm">Prénom NOM</div><div class="sm">Motion Designer</div><div class="mini"></div><div class="sm serif">Cliquez pour retourner</div></div>
+  <div class="face v"><canvas id="qr" width="21" height="21" aria-label="QR code"></canvas>
    <div>prenom.nom@email.fr<br>06 00 00 00 00<br>linkedin.com/in/prenom-nom</div>
    <div><a href="#" onclick="event.stopPropagation()">Télécharger le CV</a> · <a href="#" onclick="event.stopPropagation()">Carte numérique (PDF)</a></div>
-   <div class="serif accroche"><i>Chaque projet est une histoire à raconter. Parlons de la nôtre.</i></div>
-  </div>
+   <div class="serif accroche"><i>Chaque projet est une histoire à raconter. Parlons de la nôtre.</i></div></div>
  </button>
  <button class="close" id="cx" aria-label="Fermer la carte">×</button>
 </div>
-
-<nav id="nav" aria-label="Navigation de la visite">
- <button id="back" hidden>← Retour</button>
- <button id="next" hidden>Salle suivante →</button>
-</nav>
-
 <script src="script.js"></script>
 </body>
 </html>

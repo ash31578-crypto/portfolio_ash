@@ -1,193 +1,193 @@
 /* =====================================================================
-   PERSONNALISATION — change ici les couleurs et fonds de chaque salle
-   --bg / --bg2 : dégradé de fond · --fg : texte · --acc : accent
-   --bg-img : image de fond optionnelle, ex.  url(img/fond-salle1.jpg)
+   PERSONNALISATION — une salle = un mur + un sol + un plafond
+   --bg / --bg2 : dégradé du mur · --fg : texte · --acc : accent
+   --ceil : plafond · --floor : sol · --bg-img : image sur le mur, ex. url(img/mur1.jpg)
+   --motif / --motif-o : motif décoratif du mur et sa visibilité
    ===================================================================== */
-#s1{--bg:#efe6d3;--bg2:#cdbf9f;--fg:#2a2218;--acc:#b08d4f;--bg-img:none}
-#s2{--bg:#0f5a2c;--bg2:#8ae26a;--fg:#f2ffe9;--acc:#c9ff4d;--bg-img:none}
-#s3{--bg:#e8efe9;--bg2:#c9dbd0;--fg:#20302c;--acc:#3f7d68;--bg-img:none}
-#s4{--bg:#050d24;--bg2:#12337a;--fg:#cfe3ff;--acc:#4aa8ff;--bg-img:none}
-#s5{--bg:#3b1d2a;--bg2:#c98b86;--fg:#fff3ee;--acc:#f2c4b8;--bg-img:none}
-#s6{--bg:#efe6d3;--bg2:#cdbf9f;--fg:#2a2218;--acc:#b08d4f;--bg-img:none}
+#s1{--bg:#efe6d3;--bg2:#d9ccb0;--fg:#2a2218;--acc:#b08d4f;--ceil:#2a2520;--floor:#8c7650;--bg-img:none;--motif:none}
+#s2{--bg:#0f5a2c;--bg2:#5fbf5a;--fg:#f2ffe9;--acc:#c9ff4d;--ceil:#06240f;--floor:#243d22;--bg-img:none;--motif:repeating-radial-gradient(circle at 88% 12%,#fff 0 1px,transparent 1px 15px);--motif-o:.14}
+#s3{--bg:#e8efe9;--bg2:#c3d8cb;--fg:#20302c;--acc:#3f7d68;--ceil:#34423e;--floor:#b5c4b9;--bg-img:none;--motif:repeating-linear-gradient(45deg,#3f7d68 0 1px,transparent 1px 26px);--motif-o:.12}
+#s4{--bg:#050d24;--bg2:#12337a;--fg:#cfe3ff;--acc:#4aa8ff;--ceil:#02061a;--floor:#0b1736;--bg-img:none;--motif:repeating-linear-gradient(0deg,#4aa8ff 0 1px,transparent 1px 4px);--motif-o:.12}
+#s5{--bg:#3b1d2a;--bg2:#c98b86;--fg:#fff3ee;--acc:#f2c4b8;--ceil:#1d0d15;--floor:#5a3340;--bg-img:none;--motif:radial-gradient(circle,#fff 0 2px,transparent 3px) 0 0/34px 34px;--motif-o:.14}
+#s6{--bg:#efe6d3;--bg2:#d6c8a8;--fg:#2a2218;--acc:#b08d4f;--ceil:#2a2520;--floor:#8c7650;--bg-img:none;--motif:none}
 /* ===================================================================== */
 
-/* --motif : motif décoratif de la salle (dégradé répété). --motif-o : sa visibilité (0 à 1). Mets none pour l’enlever. */
-#s1{--motif:none}
-#s2{--motif:repeating-radial-gradient(circle at 88% 12%,#fff 0 1px,transparent 1px 15px);--motif-o:.14}
-#s3{--motif:repeating-linear-gradient(45deg,#3f7d68 0 1px,transparent 1px 26px);--motif-o:.12}
-#s4{--motif:repeating-linear-gradient(0deg,#4aa8ff 0 1px,transparent 1px 4px);--motif-o:.12}
-#s5{--motif:radial-gradient(circle,#fff 0 2px,transparent 3px) 0 0/34px 34px;--motif-o:.16}
-#s6{--motif:none}
-.scene::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:var(--motif-o,.12);background:var(--motif,none)}
-
-:root{--gold:#b08d4f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box;margin:0}
 html,body{height:100%;overflow:hidden;background:#111;font-family:"Syne",system-ui,sans-serif}
-.serif{font-family:"Cormorant Garamond",Georgia,serif}
-.scene{position:absolute;inset:0;visibility:hidden;display:grid;place-items:center;padding:64px 20px 110px;overflow-x:hidden;overflow-y:auto;color:var(--fg);
- background:var(--bg-img,none) center/cover,radial-gradient(circle at 20% 10%,#ffffff1f,transparent 45%),radial-gradient(circle at 90% 90%,#0000002e,transparent 50%),linear-gradient(160deg,var(--bg),var(--bg2))}
-.scene.active{visibility:visible;z-index:1}
-.scene.in{z-index:2}
-.t-iris{animation:iris 1.1s cubic-bezier(.7,0,.2,1) both}
-.t-curtain{animation:curtain 1.1s cubic-bezier(.7,0,.2,1) both}
-.t-glitch{animation:glitchin 1s steps(12) both}
-.t-diag{animation:diag 1.1s cubic-bezier(.7,0,.2,1) both}
-.t-door{animation:door 1.3s ease both}
-@keyframes iris{from{clip-path:circle(0% at 50% 60%);filter:blur(12px)}to{clip-path:circle(150% at 50% 60%);filter:blur(0)}}
-@keyframes curtain{from{clip-path:inset(0 50% 0 50%)}to{clip-path:inset(0 0 0 0)}}
-@keyframes glitchin{0%{clip-path:inset(0 0 100% 0)}20%{clip-path:inset(40% 0 30% 0);transform:translateX(-10px)}40%{clip-path:inset(10% 0 60% 0);transform:translateX(10px)}60%{clip-path:inset(60% 0 10% 0);filter:hue-rotate(60deg)}80%{clip-path:inset(0 0 20% 0);transform:translateX(-4px)}100%{clip-path:inset(0);transform:none;filter:none}}
-@keyframes diag{from{clip-path:polygon(0 0,0 0,0 100%,0 100%)}to{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}}
-@keyframes door{from{opacity:0;transform:scale(1.12);filter:brightness(2.4) blur(10px)}to{opacity:1;transform:none;filter:none}}
-h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.05}
-h1{font-size:clamp(40px,8vw,84px)}h2{font-size:clamp(34px,6vw,64px)}
-.lead{font-size:22px}
-p{line-height:1.55;max-width:58ch}
-.sm{font-size:14px;opacity:.85}
-.wrap{width:min(960px,100%);display:grid;gap:20px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.chips span{border:1px solid currentColor;border-radius:99px;padding:3px 12px;font-size:12px}
-.sb{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
-.sb div{aspect-ratio:16/10;border:1px dashed currentColor;display:grid;place-items:center;text-align:center;font-size:11px;opacity:.7}
+.serif,h1,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500}
+h1{font-size:clamp(34px,6vw,64px);line-height:1.05}
+.sm{font-size:14px;opacity:.85}.c{text-align:center;max-width:60ch}
+button{font:inherit;color:inherit}
 button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--acc,#b08d4f);outline-offset:3px}
 
-/* ---------- Interface : son, plaque de salle, navigation ---------- */
-#hud{position:fixed;z-index:9;top:calc(env(safe-area-inset-top,0px) + 14px);left:18px;right:18px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;color:var(--ui-fg,#fff);font-size:13px}
-#hud .hl{display:flex;gap:14px;pointer-events:auto}
-#hud button{pointer-events:auto;background:none;border:0;color:inherit;font:inherit;cursor:pointer;opacity:.85}
-#plaque{font-family:"Cormorant Garamond",Georgia,serif;text-align:right;line-height:1;letter-spacing:.14em;text-transform:uppercase;font-size:12px;border-top:1px solid currentColor;border-bottom:1px solid currentColor;padding:6px 2px;opacity:.9}
-#plaque b{display:block;font-size:26px;letter-spacing:.06em;font-weight:500;margin-top:2px}
-#plaque:empty{display:none}
-#nav{position:fixed;z-index:40;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 16px);display:flex;justify-content:center;gap:12px;pointer-events:none}
-#nav button{pointer-events:auto;font:inherit;cursor:pointer;color:var(--ui-fg,#fff);border:1px solid currentColor;border-radius:99px;padding:11px 24px;background:color-mix(in srgb,var(--ui-bg,#000) 70%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-#nav button[hidden]{display:none}
+/* ---------- La salle : plafond, mur, sol ---------- */
+.scene{position:absolute;inset:0;visibility:hidden;display:flex;flex-direction:column;color:var(--fg);overflow:hidden;transform-origin:92% 70%}
+.scene.active{visibility:visible;z-index:1}
+.ceil{flex:none;height:max(64px,11vh);background:radial-gradient(circle at 15% 100%,#fffc 0 3px,transparent 5px),radial-gradient(circle at 50% 100%,#fffc 0 3px,transparent 5px),radial-gradient(circle at 85% 100%,#fffc 0 3px,transparent 5px),linear-gradient(#0a0908,var(--ceil))}
+.wall{position:relative;flex:1;display:grid;grid-template-columns:clamp(56px,9vw,96px) 1fr clamp(56px,9vw,96px);gap:12px;padding:0 12px;overflow-x:hidden;overflow-y:auto;
+ background:radial-gradient(ellipse at 15% 0,#fff4,transparent 40%),radial-gradient(ellipse at 50% 0,#fff4,transparent 40%),radial-gradient(ellipse at 85% 0,#fff4,transparent 40%),var(--bg-img,none) center/cover,linear-gradient(160deg,var(--bg),var(--bg2))}
+.wall::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--motif-o,.12);background:var(--motif,none)}
+.wall>*{position:relative;z-index:1}
+.wall>i{display:block}
+.main{display:flex;flex-direction:column;align-items:center;gap:22px;padding:22px 0 26px;min-width:0}
+.floor{position:relative;flex:none;height:max(84px,14vh);border-top:6px solid #0004;box-shadow:inset 0 14px 18px #0003;background:repeating-linear-gradient(90deg,#0000 0 110px,#0001 110px 112px),linear-gradient(#0002,#0000 40%),var(--floor)}
+.bench{position:absolute;left:50%;top:18px;width:min(240px,40%);height:22px;margin-left:-120px;background:#14110e;border-radius:4px;box-shadow:0 18px 6px -10px #0006}
+.carpet{position:absolute;left:30%;right:30%;top:0;bottom:0;background:#7a1f2b;box-shadow:inset 0 0 0 4px #c9a463}
+.row{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;align-items:flex-start;width:100%}
+figure{display:grid;gap:0;justify-items:center}
 
-/* ---------- Salle 0 : accueil ---------- */
-.ticket{position:relative;width:min(560px,92%);height:200px;display:flex;margin:22px auto;filter:drop-shadow(0 18px 24px #0004);cursor:pointer;border:0;background:none;font:inherit;color:inherit}
-.ticket .a,.ticket .b{background:#f6efdd;display:grid;place-items:center;padding:14px;transition:transform 1s cubic-bezier(.6,0,.3,1),opacity 1s}
-.ticket .a{flex:1;border-radius:10px 0 0 10px;border-right:3px dotted #b9a982;text-align:left;place-items:center start}
-.ticket .b{width:110px;border-radius:0 10px 10px 0;font-size:12px;writing-mode:vertical-rl;letter-spacing:.2em}
-.torn .b{transform:translate(70px,170px) rotate(28deg);opacity:0}
-.torn .a{transform:translateX(-18px) rotate(-2deg)}
-.plan{display:none;grid-template-columns:repeat(4,1fr);gap:10px;width:min(560px,92%);margin:0 auto}
-.plan.on{display:grid;animation:fade .8s both}
-.plan div{border:1px solid currentColor;padding:12px 6px;font-size:13px}
-@keyframes fade{from{opacity:0;transform:translateY(12px)}}
+/* ---------- Flèches de navigation ---------- */
+.arrow{align-self:center;justify-self:center;position:relative;width:56px;height:56px;border-radius:50%;border:2px solid var(--fg);background:color-mix(in srgb,var(--bg) 55%,transparent);cursor:pointer;display:grid;place-items:center;font-size:26px;transition:transform .3s,background .3s}
+.arrow::before{content:"→"}.arrow.back::before{content:"←"}
+.arrow span{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+.arrow:hover{transform:scale(1.12);background:var(--acc);color:#111}
+.arrow.next{animation:pulse 2.2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 12px #ffffff1f}}
+.arrow.locked{pointer-events:none;opacity:.3;animation:none}
 
-/* ---------- Vidéos YouTube ---------- */
-.vslot{position:relative;width:100%;height:100%;min-height:120px;background:#0007;border-radius:8px;overflow:hidden;display:grid;place-items:center}
-.vslot.h169{height:auto;aspect-ratio:16/9}
+/* ---------- Cadres et cartels ---------- */
+.art{background:#fff;border:7px solid #14110e;padding:9px;box-shadow:0 18px 30px #0005}
+.cartel{background:#fbf8f1;color:#2a2218;padding:9px 12px;font-size:12px;line-height:1.45;margin-top:12px;max-width:270px;text-align:left;box-shadow:0 3px 8px #0003}
+.cartel b.serif{display:block;font-size:17px}
+.cartel.wide{max-width:min(520px,100%)}
+.walltext{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(22px,3.4vw,34px);line-height:1.15;text-align:center;max-width:26ch}
+.walltext small{display:block;font-family:Syne,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.75;margin-bottom:8px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.chips span{border:1px solid currentColor;border-radius:99px;padding:3px 12px;font-size:12px}
+.sb{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.sb div{aspect-ratio:16/10;border:1px dashed currentColor;display:grid;place-items:center;text-align:center;font-size:11px;opacity:.7}
+.vslot{position:relative;width:100%;height:100%;min-height:120px;background:#0007;border-radius:4px;overflow:hidden;display:grid;place-items:center;color:#fff}
+.vslot.h169{height:auto;aspect-ratio:16/9}.vslot.small{margin-top:12px}
 .vslot iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.play{background:none;border:0;color:inherit;cursor:pointer;font:inherit;display:grid;gap:6px;place-items:center;width:100%;height:100%}
+.play{background:none;border:0;cursor:pointer;display:grid;gap:6px;place-items:center;width:100%;height:100%}
 .play span{font-size:38px}.play small{opacity:.75;font-size:12px}
 
-/* ---------- Salle I ---------- */
-.album{display:grid;grid-template-columns:minmax(240px,360px) 1fr;gap:28px;align-items:start}
-.disc{position:relative;padding-right:26%}
-.cover{position:relative;z-index:2;aspect-ratio:1;background:conic-gradient(from 40deg,#c9ff4d,#17b26a,#0b3d1d,#c9ff4d);border-radius:6px;display:grid;place-items:center;box-shadow:0 24px 50px #0006;overflow:hidden}
-.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cover b{font-family:Syne;font-weight:800;font-size:clamp(30px,5vw,48px);color:#0b3d1d;transform:rotate(-8deg);letter-spacing:-.03em}
-.cd{position:absolute;z-index:1;right:0;top:6%;width:68%;aspect-ratio:1;border-radius:50%;animation:spin 6s linear infinite;box-shadow:0 14px 30px #0005;
- background:radial-gradient(circle,#1e2a18 0 6%,#e9efe2 6% 15%,transparent 15%),radial-gradient(circle at 30% 25%,#ffffff88,transparent 35%),conic-gradient(from 0deg,#9caf88,#cfdcc0,#86a06f,#dce8cf,#9caf88,#b7c9a5,#9caf88)}
-.cd::after{content:"";position:absolute;inset:18%;border-radius:50%;border:1px solid #ffffff66;box-shadow:0 0 0 14px #ffffff18}
-.disc.playing .cd{animation-duration:1.4s}
+/* ---------- Hall d’accueil ---------- */
+.plan{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:min(520px,100%);opacity:0;transform:translateY(10px);transition:opacity .8s,transform .8s;color:#2a2218}
+.plan.on{opacity:1;transform:none}
+.plan b{grid-column:1/-1;font-size:20px}
+.plan div{border:1px solid #2a2218;padding:8px 4px;font-size:11px;text-align:center}
+.plan span{display:block;font-family:"Cormorant Garamond",serif;font-size:22px}
+.desk{position:relative;width:min(480px,100%);padding:18px 18px 0;background:linear-gradient(#a98556,#7a5a30);border-radius:8px 8px 0 0;box-shadow:0 -6px 20px #0003;display:grid;justify-items:center}
+.deskl{position:absolute;bottom:6px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#f6efdd;opacity:.8}
+.ticket{position:relative;width:min(400px,100%);height:150px;display:flex;margin-bottom:30px;filter:drop-shadow(0 12px 14px #0005);cursor:pointer;border:0;background:none;color:#2a2218}
+.ticket .a,.ticket .b{background:#f6efdd;display:grid;place-items:center;padding:12px;transition:transform 1s cubic-bezier(.6,0,.3,1),opacity 1s}
+.ticket .a{flex:1;border-radius:8px 0 0 8px;border-right:3px dotted #b9a982;text-align:left;place-items:center start}
+.ticket .b{width:90px;border-radius:0 8px 8px 0;font-size:11px;writing-mode:vertical-rl;letter-spacing:.2em}
+.torn .b{transform:translate(60px,150px) rotate(28deg);opacity:0}
+.torn .a{transform:translateX(-14px) rotate(-2deg)}
+
+/* ---------- Salle I : le disque mural ---------- */
+.cov{position:relative;width:min(210px,56vw);aspect-ratio:1;background:conic-gradient(from 40deg,#c9ff4d,#17b26a,#0b3d1d,#c9ff4d);display:grid;place-items:center;overflow:hidden;padding:0}
+.cov img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cov b{font-family:Syne;font-weight:800;font-size:28px;color:#0b3d1d;transform:rotate(-8deg)}
+.discwrap{position:relative}
+.needle{position:absolute;left:50%;top:-18px;margin-left:-10px;border:10px solid transparent;border-top:16px solid var(--acc);z-index:3}
+.cdw{width:min(290px,66vw);aspect-ratio:1;border-radius:50%;cursor:grab;touch-action:none;transition:transform .8s cubic-bezier(.3,.7,.2,1);filter:drop-shadow(0 16px 24px #0006)}
+.cdw:active{cursor:grabbing}
+.cd{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;background:#9caf88}
+.cd::before{content:"";position:absolute;inset:0;background:conic-gradient(from 0deg,#9caf88,#cfdcc0,#86a06f,#dce8cf,#9caf88,#b7c9a5,#9caf88);animation:spin 9s linear infinite paused}
+.cd.playing::before{animation-play-state:running;animation-duration:2.2s}
+.cd::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#1e2a18 0 5%,#e9efe2 5% 13%,transparent 13%),radial-gradient(circle at 30% 25%,#fff8,transparent 35%);box-shadow:inset 0 0 0 10px #ffffff22}
+.cd b{position:absolute;z-index:2;left:50%;width:36px;height:36px;margin-left:-18px;border-radius:50%;background:#1e2a18;color:#dce8cf;display:grid;place-items:center;font-size:15px}
+.cd .s1{top:7%}.cd .s2{bottom:7%}
 @keyframes spin{to{transform:rotate(360deg)}}
-.tracks{display:grid;gap:8px;margin-top:14px}
-.tracks button{background:#0b3d1d99;color:inherit;border:1px solid #c9ff4d66;border-radius:8px;padding:11px 14px;text-align:left;font:inherit;cursor:pointer}
-.tracks button.on{background:var(--acc);color:#0b3d1d}
-.proj{display:none;margin-top:14px}.proj.on{display:block;animation:fade .6s both}
-.insp{display:flex;gap:12px;align-items:flex-start;border-left:2px solid var(--acc);padding:4px 0 4px 14px;margin-top:18px;font-size:13px;line-height:1.5;max-width:60ch;opacity:.92}
-.insp b{display:block;font-family:"Cormorant Garamond",serif;font-size:17px;letter-spacing:.04em}
-.insp .g{font-size:26px;color:var(--acc);line-height:1}
-.info{display:grid;grid-template-columns:110px 1fr;gap:8px 16px;font-size:14px;line-height:1.5;text-align:left;max-width:760px}
-.info dt{opacity:.65}
-.vslot.small{max-width:360px}
-/* ---------- Salle II ---------- */
-.trio{--h:min(34vh,280px);display:flex;gap:14px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
-.card{height:var(--h);position:relative;border:1px solid #20302c55;background:#f7faf7;overflow:hidden;border-radius:4px}
-.card.h{aspect-ratio:16/9}.card.v{height:calc(var(--h)*1.5);aspect-ratio:9/16}
-.card .s{position:absolute;inset:0;display:none;place-items:center;text-align:center;font-family:"Cormorant Garamond",serif;font-size:clamp(16px,2.4vw,24px)}
+.screenfig{width:min(440px,100%)}
+.screen{width:100%;position:relative;min-height:160px;display:grid}
+.idle{display:grid;place-items:center;aspect-ratio:16/9;background:#111;color:#fff9;font-size:13px;letter-spacing:.14em}
+.proj{display:none}.proj.on{display:block;animation:fade .6s both}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}}
+
+/* ---------- Salle II : cadran ---------- */
+.trio{--h:min(30vh,240px);display:flex;gap:26px;justify-content:center;align-items:flex-end;flex-wrap:wrap}
+.card{height:var(--h);position:relative;background:#f7faf7;overflow:hidden;color:#20302c}
+.card.h{aspect-ratio:16/9}.card.v{height:calc(var(--h)*1.55);aspect-ratio:9/16}
+.card .s{position:absolute;inset:0;display:none;place-items:center;text-align:center;font-family:"Cormorant Garamond",serif;font-size:clamp(16px,2.2vw,22px)}
 #trio[data-step="0"] .s0,#trio[data-step="1"] .s1,#trio[data-step="2"] .s2{display:grid;animation:fade .5s both}
 #trio[data-step="0"] .s0{background:repeating-linear-gradient(0deg,#0000 0 22px,#20302c14 22px 23px),#fff}
 #trio[data-step="1"] .s1{background:#cfe0d6}
-.steps{display:flex;justify-content:space-between;font-size:13px}
-input[type=range]{width:100%;accent-color:var(--acc)}
-@media(max-width:700px){.trio{--h:auto}.card.h{height:auto;width:100%}.card.v{height:440px}}
+.dialwrap{display:grid;justify-items:center;gap:10px;width:min(360px,100%)}
+.dial{position:relative;width:84px;height:84px;border-radius:50%;border:3px solid currentColor;background:#fffa;cursor:pointer;box-shadow:0 8px 16px #0003}
+.dial i{position:absolute;left:50%;top:8px;width:4px;height:34px;margin-left:-2px;background:var(--acc);border-radius:2px;transform-origin:50% 34px;transform:rotate(-60deg);transition:transform .5s cubic-bezier(.3,1.4,.4,1)}
+.steps{display:flex;justify-content:space-between;width:100%;font-size:12px}
+@media(max-width:700px){.trio{--h:150px}}
 
 /* ---------- Salle III : les éléments quittent la page ---------- */
-.photo{position:relative;aspect-ratio:16/9;max-width:760px;width:100%;margin:0 auto;cursor:crosshair}
-.pic{position:absolute;inset:0;overflow:hidden;background:linear-gradient(#0a1c4d,#13367a 60%,#050d24);border:1px solid #4aa8ff66}
+.photo{position:relative;aspect-ratio:16/9;width:min(560px,100%);cursor:crosshair}
+.pic{position:absolute;inset:0;overflow:hidden;background:linear-gradient(#0a1c4d,#13367a 60%,#050d24);border:7px solid #14110e}
 .pic::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#4aa8ff12 0 2px,transparent 2px 5px)}
 .pic i{position:absolute;display:block}
 .cue{position:absolute;left:0;right:0;bottom:8%;text-align:center;font-size:13px;letter-spacing:.2em;text-transform:uppercase;z-index:2;transition:opacity .4s}
 .photo.hot .cue{opacity:0}
 .moon{width:24%;aspect-ratio:1;border-radius:50%;background:#cfe3ff;left:38%;top:12%;box-shadow:0 0 60px #4aa8ff}
 .ground{left:-5%;right:-5%;bottom:-5%;height:30%;background:#02071a;clip-path:polygon(0 40%,20% 10%,45% 35%,70% 0,100% 30%,100% 100%,0 100%)}
-.fly{position:absolute;display:block;opacity:0;z-index:3;pointer-events:none;--k:0;
+.fly{position:absolute;display:block;opacity:0;z-index:30;pointer-events:none;--k:0;
  transform:translate(calc(var(--x)*var(--k) + var(--px,0px)*var(--d)),calc(var(--y)*var(--k) + var(--py,0px)*var(--d))) rotate(calc(var(--r)*var(--k)));
  transition:transform 1.8s cubic-bezier(.2,.7,.2,1),opacity .5s;filter:drop-shadow(0 0 12px #4aa8ff)}
 .leaf{width:42px;height:68px;background:#4aa8ff;border-radius:0 100% 0 100%}
 .shard{width:36px;height:36px;background:#9fd1ff;clip-path:polygon(50% 0,100% 100%,0 70%)}
-.fly.big{transform-origin:center;scale:1.7}
+.fly.big{scale:1.7}
 .photo.hot .fly{--k:1;opacity:.95}
 .photo.hot .pic{animation:glitch .4s steps(2) 1}
 @keyframes glitch{50%{transform:translateX(3px);filter:hue-rotate(40deg)}}
+#s4 .wall,#s4 .main,#s4 .row{overflow:visible}
 
 /* ---------- Salle IV : deux cartes l’une derrière l’autre ---------- */
-.stage5{position:relative;width:min(760px,100%);aspect-ratio:16/9;border-radius:12px;display:grid;place-items:center;cursor:pointer}
-.bgvid{position:absolute;inset:0;border-radius:12px;overflow:hidden;filter:blur(7px) brightness(.55);transform:scale(.94);transition:filter .7s,transform .7s;background:linear-gradient(135deg,#f2c4b8,#8a3f4e);pointer-events:none}
+.stage5{position:relative;width:min(640px,100%);aspect-ratio:16/9;display:grid;place-items:center;cursor:pointer;border:7px solid #14110e;box-shadow:0 18px 30px #0005}
+.bgvid{position:absolute;inset:0;overflow:hidden;filter:blur(7px) brightness(.5);transition:filter .7s;background:linear-gradient(135deg,#f2c4b8,#8a3f4e);pointer-events:none}
 .bgvid iframe{width:100%;height:100%;border:0}
-.stage5:hover .bgvid,.stage5.on .bgvid,.stage5:focus-visible .bgvid{filter:none;transform:scale(1);box-shadow:0 30px 60px #0007}
-.deck{position:relative;width:min(340px,70%);height:min(210px,72%);opacity:0;transform:translateY(16px);transition:opacity .5s .15s,transform .5s .15s}
+.stage5:hover .bgvid,.stage5.on .bgvid,.stage5:focus-visible .bgvid{filter:none}
+.deck{position:relative;width:min(320px,70%);height:min(190px,72%);opacity:0;transform:translateY(16px);transition:opacity .5s .15s,transform .5s .15s}
 .stage5:hover .deck,.stage5.on .deck,.stage5:focus-within .deck{opacity:1;transform:none}
-.choice{position:absolute;inset:0;display:grid;align-content:space-between;text-align:left;gap:4px;padding:16px 18px;font:inherit;color:#fff3ee;background:#2a121bee;border:1px solid #f2c4b8;border-radius:12px;cursor:pointer;transition:transform .55s cubic-bezier(.3,.7,.2,1),opacity .4s,filter .4s;box-shadow:0 14px 30px #0006}
+.choice{position:absolute;inset:0;display:grid;align-content:space-between;text-align:left;padding:14px 16px;color:#fff3ee;background:#2a121bee;border:1px solid #f2c4b8;border-radius:10px;cursor:pointer;transition:transform .55s cubic-bezier(.3,.7,.2,1),filter .4s;box-shadow:0 14px 30px #0006}
 .choice small{opacity:.65;letter-spacing:.14em;text-transform:uppercase;font-size:10px}
-.choice b{font-size:22px;font-weight:500}
-.choice span{font-size:12.5px;line-height:1.4;opacity:.85}
-.choice em{font-style:normal;font-size:12px;color:#f2c4b8}
-.choice.front{z-index:2;transform:none}
-.choice.back{z-index:1;transform:translate(30px,-26px) rotate(4deg) scale(.95);filter:brightness(.75)}
+.choice b{font-size:21px;font-weight:500}.choice span{font-size:12px;line-height:1.4;opacity:.85}.choice em{font-style:normal;font-size:12px;color:#f2c4b8}
+.choice.front{z-index:2}
+.choice.back{z-index:1;transform:translate(28px,-24px) rotate(4deg) scale(.95);filter:brightness(.75)}
 .choice.back em{opacity:0}
-.hint5{opacity:.8}
-.info.tl{text-align:left}
-.modal{position:fixed;inset:0;z-index:50;background:#000c;display:none;place-items:center;padding:20px}
+.modal{position:absolute;inset:0;z-index:50;background:#000c;display:none;place-items:center;padding:20px}
 .modal.on{display:grid}
-.modal .box{background:#2a121b;color:#fff3ee;border-radius:12px;padding:20px;width:min(760px,100%);max-height:92%;overflow:auto;text-align:left}
+.modal .box{background:#2a121b;color:#fff3ee;border-radius:12px;padding:20px;width:min(760px,100%);max-height:92%;overflow:auto}
 .modal h3{font-size:28px;margin-bottom:12px}
 .modal dl{display:grid;grid-template-columns:90px 1fr;gap:8px 14px;margin-top:14px;font-size:14px;line-height:1.5}
 .modal dt{opacity:.65}
-.x{float:right;background:none;border:0;color:inherit;font-size:26px;cursor:pointer}
+.x{float:right;background:none;border:0;font-size:26px;cursor:pointer}
 
-/* ---------- Sortie ---------- */
-#s6{place-items:stretch;padding:0 0 100px;overflow:hidden;text-align:center}
-.hall{position:relative;width:100%;height:100%;min-height:580px;--fall:max(120px,calc(50vh - 140px))}
-.wall{position:absolute;inset:0 0 30% 0;background:linear-gradient(#e9dfc9,#d6c8a8);box-shadow:inset 0 -14px 24px #0002}
-.floor{position:absolute;inset:70% 0 0 0;background:repeating-linear-gradient(90deg,#0000 0 80px,#0000000d 80px 82px),linear-gradient(#a58d63,#6f5a37)}
-.painting{position:absolute;left:50%;top:6%;width:min(380px,70%);transform:translateX(-50%)}
+/* ---------- Salle finale ---------- */
+#s6 .wall{overflow:visible;z-index:2}
+#s6 .main{padding-top:14px}
+.painting{position:relative;width:min(460px,100%);--fall:max(40px,calc(74vh - 300px))}
 .spot{position:absolute;z-index:0;left:-30%;right:-30%;top:-8%;height:150%;background:linear-gradient(#fff6d8aa,transparent 80%);clip-path:polygon(40% 0,60% 0,100% 100%,0 100%);pointer-events:none}
 .frame{position:relative;z-index:2;aspect-ratio:4/3;border:14px solid #8a6b32;border-image:linear-gradient(135deg,#e2c46f,#7a5e2c,#e2c46f) 1;box-shadow:0 20px 34px #0004,inset 0 0 0 7px #efe5cb;background:#efe5cb;padding:9px}
-.art{width:100%;height:100%;display:grid;place-items:center;color:#fff;font-size:clamp(16px,3vw,24px);letter-spacing:.05em;text-shadow:0 1px 8px #0006;
- background:radial-gradient(circle at 30% 30%,#ffffff55,transparent 45%),linear-gradient(90deg,#17b26a 0 25%,#9caf88 25% 50%,#4aa8ff 50% 75%,#f2c4b8 75% 100%)}
-.label{position:relative;z-index:2;margin:14px auto 0;width:76%;background:#f6efdd;color:#2a2218;padding:8px 10px;font-size:14px;line-height:1.3;box-shadow:0 4px 10px #0002}
-.drop{position:absolute;z-index:1;left:50%;bottom:14%;width:92px;height:58px;margin-left:-46px;background:#f6efdd;border:1px solid #d9ceb2;border-radius:3px;cursor:pointer;opacity:0;box-shadow:0 5px 9px #0002}
-.dropping .drop{animation:fall 4s 1.2s cubic-bezier(.35,.55,.4,1) both,glow 3s 5.3s ease-in-out infinite}
-@keyframes fall{0%{opacity:0;z-index:1;transform:translateY(0) rotate(-3deg)}12%{opacity:1}22%{z-index:3}40%{transform:translate(-34px,calc(var(--fall)*.4)) rotate(9deg)}70%{transform:translate(26px,calc(var(--fall)*.75)) rotate(-7deg)}100%{opacity:1;z-index:3;transform:translate(0,var(--fall)) rotate(3deg)}}
+.artw{width:100%;height:100%;display:grid;place-items:center;color:#fff;font-size:clamp(16px,3vw,24px);text-shadow:0 1px 8px #0006;background:radial-gradient(circle at 30% 30%,#fff5,transparent 45%),linear-gradient(90deg,#17b26a 0 25%,#9caf88 25% 50%,#4aa8ff 50% 75%,#f2c4b8 75% 100%)}
+.painting .cartel{position:relative;z-index:2;margin:14px auto 0;text-align:center}
+.drop{position:absolute;z-index:1;left:50%;bottom:17%;width:90px;height:57px;margin-left:-45px;background:#f6efdd;border:1px solid #d9ceb2;border-radius:3px;cursor:pointer;opacity:0;box-shadow:0 5px 9px #0002}
+.dropping .drop{animation:fall 7s 1.2s cubic-bezier(.35,.55,.4,1) both,glow 3s 8.4s ease-in-out infinite}
+@keyframes fall{0%{opacity:0;z-index:1;transform:translateY(0)}10%{opacity:1}20%{z-index:3}50%{transform:translate(-8px,calc(var(--fall)*.5)) rotate(2deg)}100%{opacity:1;z-index:3;transform:translate(0,var(--fall)) rotate(-1deg)}}
 @keyframes glow{50%{box-shadow:0 5px 9px #0002,0 0 18px 4px #fff8d088}}
-.bye{position:absolute;left:0;right:0;bottom:6%;margin:auto;font-size:20px;color:#fff;text-shadow:0 1px 6px #0007}
+.bye{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-size:18px;color:#fff;text-shadow:0 1px 6px #0007}
 
 /* ---------- Carte (très sobre) ---------- */
 #card{position:fixed;inset:0;z-index:60;display:none;place-items:center;background:#000b;padding:20px;perspective:1400px}
 #card.on{display:grid}
-.flip{position:relative;width:min(480px,94%);aspect-ratio:1.65;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.5,0,.2,1);cursor:pointer;border:0;background:none;padding:0;font:inherit;text-align:left}
+.flip{position:relative;width:min(480px,94%);aspect-ratio:1.65;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.5,0,.2,1);cursor:pointer;border:0;background:none;padding:0;text-align:left}
 .flip.back{transform:rotateY(180deg)}
 .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:2px;padding:7%;color:#2a2218;background:#f7f2e6;box-shadow:0 18px 36px #0006;overflow:hidden}
-.face .nm{font-size:clamp(22px,5vw,30px);letter-spacing:.02em}
+.face .nm{font-size:clamp(22px,5vw,30px)}
 .face .mini{width:28px;height:1px;margin:18px 0;background:#2a2218}
 .face.v{transform:rotateY(180deg);display:grid;gap:7px;font-size:clamp(10px,2.4vw,13px);align-content:start}
-.face a{color:inherit}
-.accroche{font-size:clamp(14px,3.4vw,19px);margin-top:6px}
+.face a{color:inherit}.accroche{font-size:clamp(14px,3.4vw,19px);margin-top:6px}
 .tag{position:absolute;top:7%;right:7%;font-size:9px;letter-spacing:.24em;text-transform:uppercase;border:1px solid #2a2218;padding:3px 8px;opacity:.7}
 #qr{width:66px;height:66px;image-rendering:pixelated;float:right}
 .close{position:absolute;top:10px;right:14px;font-size:28px;background:none;border:0;color:#fff;cursor:pointer;z-index:2}
 
-@media(max-width:700px){.album{grid-template-columns:1fr}.ticket{height:170px}}
-@media(prefers-reduced-motion:reduce){.scene.in{animation:none!important}.fly{transition:none}}
+/* ---------- Interface ---------- */
+#hud{position:fixed;z-index:70;top:calc(env(safe-area-inset-top,0px) + 12px);left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;color:#fff;font-size:12px}
+#hud .hl{display:flex;gap:14px;pointer-events:auto}
+#hud button{background:none;border:0;cursor:pointer;opacity:.9}
+#plaque{font-family:"Cormorant Garamond",Georgia,serif;text-align:right;line-height:1;letter-spacing:.14em;text-transform:uppercase;border-top:1px solid #fff;border-bottom:1px solid #fff;padding:6px 2px}
+#plaque b{display:block;font-size:24px;letter-spacing:.06em;font-weight:500;margin-top:2px}
+
+/* ---------- Transition : fondu au noir ---------- */
+.scene.in{z-index:2;animation:fadein .9s .55s both}
